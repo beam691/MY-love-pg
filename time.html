@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>เวลาที่เราอยู่ด้วยกัน ⏳</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            text-align: center;
+            background-color: #ffe6f2;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+        }
+        .container {
+            margin-top: 100px;
+            background-color: #fff8dc;
+            padding: 20px;
+            width: 80%;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+            border-radius: 15px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            text-align: center;
+        }
+        h1 {
+            color: #ff4081;
+            font-size: 36px;
+        }
+        .time-box {
+            font-size: 20px;
+            color: #333;
+            padding: 15px;
+            border-radius: 10px;
+            background-color: white;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            margin-top: 20px;
+        }
+        button {
+            padding: 10px 15px;
+            font-size: 18px;
+            background-color: #ff4081;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+        button:hover {
+            background-color: #e6005c;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>💖 เวลาที่เราอยู่ด้วยกัน 💖</h1>
+        <div class="time-box">
+            <p>⏳ เวลาที่ผ่านไปตั้งแต่ 11/09/2024 14:07 ⏳</p>
+            <h2 id="timePassed">กำลังโหลด...</h2>
+        </div>
+        <button onclick="goBack()">⬅ กลับหน้าแรก</button>
+    </div>
+
+    <script>
+        function updateTime() {
+            const startDate = new Date(2024, 8, 11, 14, 7, 0).getTime(); // 11 ก.ย. 2024 เวลา 14:07
+            const now = new Date().getTime(); // เวลาปัจจุบัน
+            const diff = now - startDate;
+
+            if (diff < 0) {
+                document.getElementById("timePassed").innerText = "💖 รอให้ถึงวันนั้นก่อนนะ 💖";
+                return;
+            }
+
+            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+            const minutes = Math.floor((diff / (1000 * 60)) % 60);
+            const seconds = Math.floor((diff / 1000) % 60);
+
+            document.getElementById("timePassed").innerText = 
+                days + " วัน " + hours + " ชั่วโมง " + minutes + " นาที " + seconds + " วินาที";
+        }
+
+        setInterval(updateTime, 1000); // อัปเดตทุก 1 วินาที
+        window.onload = updateTime; // ให้ทำงานทันทีเมื่อหน้าโหลดเสร็จ
+
+        function goBack() {
+            window.location.href = "index.html"; // กลับหน้าแรก
+        }
+    </script>
+</body>
+</html>
